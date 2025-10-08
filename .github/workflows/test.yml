@@ -1,0 +1,18 @@
+on: [push]
+permissions:
+  contents: write
+
+jobs:
+  create-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Créer rapport.txt
+        run: date > rapport.txt
+      - name: Commit et push
+        run: |
+          git config --global user.name "TonNom"
+          git config --global user.email "ton.email@example.com"
+          git add rapport.txt
+          git commit -m "Ajout rapport automatique"
+          git push
